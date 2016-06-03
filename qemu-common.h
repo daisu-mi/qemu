@@ -398,4 +398,12 @@ static inline uint64_t muldiv64(uint64_t a, uint32_t b, uint32_t c)
 
 #include "module.h"
 
+#ifndef BIT
+#define BIT(n) (1 << (n))
+#endif
+
+#ifndef BITS
+#define BITS(n, m) (((0xffffffffU << (31 - n)) >> (31 - n + m)) << m)
+#endif
+
 #endif

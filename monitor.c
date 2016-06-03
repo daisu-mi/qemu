@@ -1289,6 +1289,13 @@ static int do_cont(Monitor *mon, const QDict *qdict, QObject **ret_data)
     }
 }
 
+/* honey */
+int do_cont_current(void)
+{
+	return(do_cont(cur_mon, NULL, NULL));
+}
+
+
 static void bdrv_key_cb(void *opaque, int err)
 {
     Monitor *mon = opaque;

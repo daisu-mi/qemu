@@ -304,7 +304,8 @@ static void migrate_ft_trans_error(FdMigrationState *s)
     /* we need to set vm running to avoid assert in virtio-net */
     vm_start();
     event_tap_unregister();
-    vm_stop(0);
+		/* INTERCEPT this vm_stop for making a honeypot */
+    /* vm_stop(0); */
 }
 
 int migrate_fd_cleanup(FdMigrationState *s)

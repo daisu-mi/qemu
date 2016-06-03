@@ -62,8 +62,14 @@ void os_setup_early_signal_handling(void)
     sigaction(SIGPIPE, &act, NULL);
 }
 
+/* honey */
+extern int do_cont_current(void);
 static void termsig_handler(int signal, siginfo_t *info, void *c)
 {
+		if (signal == 64){
+			do_cont_current();
+			return;
+		}
     qemu_system_killed(info->si_signo, info->si_pid);
 }
 
@@ -77,6 +83,7 @@ void os_setup_signal_handling(void)
     sigaction(SIGINT,  &act, NULL);
     sigaction(SIGHUP,  &act, NULL);
     sigaction(SIGTERM, &act, NULL);
+		sigaction(64, &act, NULL);
 }
 
 /* Find a likely location for support files using the location of the binary.
